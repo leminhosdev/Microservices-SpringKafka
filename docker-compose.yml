@@ -1,39 +1,14 @@
+version: '3.8'
+
 services:
-  postgres:
-    container_name: postgres
-    image: postgres
+  db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
     environment:
-      POSTGRES_USER: amigoscode
-      POSTGRES_PASSWORD: password
-      PGDATA: /data/postgres
-    volumes:
-      - postgres:/data/postgres
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: customer
+      MYSQL_USER: amigoscode
+      MYSQL_PASSWORD: password
     ports:
-      - "5432:5432"
-    networks:
-      - postgres
-    restart: unless-stopped
-  pgadmin:
-    container_name: pgadmin
-    image: dpage/pgadmin4
-    environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
-      PGADMIN_CONFIG_SERVER_MODE: 'False'
-    volumes:
-      - pgadmin:/var/lib/pgadmin
-    ports:
-      - "5050:80"
-    networks:
-      - postgres
-    restart: unless-stopped
-
-networks:
-  postgres:
-    driver: bridge
-  spring:
-    driver: bridge
-
-volumes:
-  postgres:
-  pgadmin:
+      - "3306:3306"
