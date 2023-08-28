@@ -1,14 +1,14 @@
 spring:
   application:
-      name: customer
+    name: fraud
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/customer?useSSL=false&serverTimezone=UTC
-    username: amigoscode
+    url: jdbc:mysql://localhost:3306/fraud?useSSL=false&serverTimezone=UTC
+    username: root
     password: password
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
   server:
-    port: 8081
+    port: 8083
